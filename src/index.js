@@ -1,10 +1,10 @@
 import { readFileSync } from 'fs';
 import path from 'path';
-import { parse } from './parser.js';
-import { buildDiff } from './diffBuilder.js';
-import { format } from './formatters/stylish.js';
+import parse from './parser.js';
+import buildDiff from './diffBuilder.js';
+import format from './formatters/stylish.js';
 
-export const diff = (filepath1, filepath2, formatType = 'stylish') => {
+const genDiff = (filepath1, filepath2, formatType = 'stylish') => {
   const getData = (filepath) => {
     const ext = path.extname(filepath);
     const content = readFileSync(path.resolve(filepath), 'utf-8');
@@ -17,3 +17,5 @@ export const diff = (filepath1, filepath2, formatType = 'stylish') => {
 
   return format(differences, formatType);
 };
+
+export default genDiff;

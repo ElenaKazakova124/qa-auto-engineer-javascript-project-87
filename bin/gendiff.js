@@ -1,21 +1,17 @@
 #!/usr/bin/env node
-import { diff } from '../src/diffBuilder.js';
 import { Command } from 'commander';
+import genDiff from '../src/index.js'; // Изменено с diff на genDiff
 
 const program = new Command();
 
 program
   .name('gendiff')
-  .description('Compares two JSON files and shows differences')
+  .description('Compares two configuration files and shows a difference.')
   .version('1.0.0')
+  .option('-f, --format <type>', 'output format', 'stylish')
   .arguments('<filepath1> <filepath2>')
-  .action((filepath1, filepath2) => {
-    try {
-      console.log(diff(filepath1, filepath2));
-    } catch (error) {
-      console.error('Error:', error.message);
-      process.exit(1);
-    }
+  .action((filepath1, filepath2, options) => {
+    console.log(genDiff(filepath1, filepath2, options.format));
   });
 
 program.parse(process.argv);
