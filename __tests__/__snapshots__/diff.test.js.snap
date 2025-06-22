@@ -1,6 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`flat JSON diff 1`] = `
+exports[`JSON diff 1`] = `
+"{
+     host: "hexlet.io"
+  -  timeout: 50
+  +  timeout: 20
+  -  proxy: "123.234.53.22"
+  -  follow: false
+  +  verbose: true
+}"
+`;
+
+exports[`YAML diff 1`] = `
 "{
      host: "hexlet.io"
   -  timeout: 50
