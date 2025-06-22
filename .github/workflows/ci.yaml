@@ -2,37 +2,26 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  test-and-sonar:
-    runs-on: macos-latest
+  analyze:
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0
-        
+
     - uses: actions/setup-node@v3
       with:
         node-version: 20
-        
-    - name: Install dependencies
-      run: npm install
-      
-    - name: Run linter
-      run: make lint
-      
-    - name: Run tests with coverage
-      run: npm test -- --coverage
-      env:
-        CI: true
-        
-    - name: SonarQube Scan
-      uses: sonarsource/sonarqube-scan-action@master
+
+    - run: npm install
+    - run: npm test -- --coverage
+
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarqube-scan-action@master
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
       with:
         args: >
-          -Dsonar.projectKey=your-project-key
-          -Dsonar.organization=your-org
+          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+          -Dsonar.organization=${{ secrets.SONAR_ORG }}
           -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-          -Dsonar.sources=src
-          -Dsonar.tests=__tests__
