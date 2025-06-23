@@ -1,8 +1,5 @@
-const parse = (content, ext) => {
-  if (ext === '.json') {
-    return JSON.parse(content);
-  }
-  throw new Error(`Unsupported file format: ${ext}`);
+const parse = (content) => {
+  return JSON.parse(content);
 };
 
 export default parse;

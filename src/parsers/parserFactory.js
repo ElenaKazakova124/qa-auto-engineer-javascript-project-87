@@ -2,18 +2,17 @@ import parseJson from './jsonParser.js';
 import parseYaml from './yamlParser.js';
 
 const getParser = (filepath) => {
-  const ext = filepath.slice(filepath.lastIndexOf('.'));
-  const parsers = {
-    '.json': (content) => parseJson(content, '.json'),
-    '.yaml': parseYaml,
-    '.yml': parseYaml
-  };
-
-  if (!parsers[ext]) {
-    throw new Error(`Unsupported format: ${ext}. Use .json, .yaml or .yml`);
+  const ext = filepath.slice(filepath.lastIndexOf('.')).toLowerCase();
+  
+  if (ext === '.json') {
+    return parseJson;
   }
-
-  return parsers[ext];
+  
+  if (ext === '.yaml' || ext === '.yml') {
+    return parseYaml;
+  }
+  
+  throw new Error(`Unsupported file format: ${ext}`);
 };
 
 export default getParser;
