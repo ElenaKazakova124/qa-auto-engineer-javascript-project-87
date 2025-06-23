@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
-import genDiff from '../src/index.js'; // Изменено с diff на genDiff
+import genDiff from '../src/index.js';
 
 const program = new Command();
 

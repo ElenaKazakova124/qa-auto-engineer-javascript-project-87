@@ -26,3 +26,17 @@ gendiff file1.yaml file2.yaml
 
 # Mixed comparison
 gendiff file1.json file2.yaml
+
+
+## Usage
+
+```javascript
+import genDiff from '@hexlet/code';
+
+// Default stylish format
+const diff1 = genDiff('file1.json', 'file2.json');
+console.log(diff1);
+
+// Plain format
+const diff2 = genDiff('file1.yaml', 'file2.yaml', 'plain');
+console.log(diff2);
