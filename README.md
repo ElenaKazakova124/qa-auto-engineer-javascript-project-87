@@ -13,8 +13,18 @@ Example output:
 }
 
 ## Supported Formats
-- JSON (`.json`)
-- YAML (`.yaml`, `.yml`)
+
+### Stylish (default)
+```bash
+gendiff file1.json file2.json
+# или
+gendiff file1.yaml file2.yaml --format stylish
+### Plain
+gendiff file1.json file2.json --format plain
+### JSON
+gendiff file1.json file2.json --format json
+
+
 
 ## Examples
 ```bash
