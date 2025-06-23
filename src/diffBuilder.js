@@ -1,8 +1,9 @@
 const buildDiff = (obj1, obj2) => {
   const keys = Object.keys({ ...obj1, ...obj2 });
+  const sortedKeys = keys.sort();
   const result = {};
 
-  keys.forEach((key) => {
+  sortedKeys.forEach((key) => {
     if (!(key in obj2)) {
       result[`- ${key}`] = obj1[key];
     } else if (!(key in obj1)) {

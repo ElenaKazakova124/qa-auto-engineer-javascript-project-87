@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1750703686399" clover="3.2.0">
-  <project timestamp="1750703686399" name="All files">
-    <metrics statements="78" coveredstatements="72" conditionals="43" coveredconditionals="34" methods="15" coveredmethods="15" elements="136" coveredelements="121" complexity="0" loc="78" ncloc="78" packages="3" files="9" classes="9"/>
+<coverage generated="1750705728923" clover="3.2.0">
+  <project timestamp="1750705728923" name="All files">
+    <metrics statements="72" coveredstatements="68" conditionals="43" coveredconditionals="35" methods="14" coveredmethods="14" elements="129" coveredelements="117" complexity="0" loc="72" ncloc="72" packages="3" files="9" classes="9"/>
     <package name="src">
-      <metrics statements="22" coveredstatements="22" conditionals="7" coveredconditionals="7" methods="3" coveredmethods="3"/>
+      <metrics statements="23" coveredstatements="23" conditionals="7" coveredconditionals="7" methods="3" coveredmethods="3"/>
       <file name="diffBuilder.js" path="/Users/Elena/Documents/QA/qa-auto-engineer-javascript-project-87/src/diffBuilder.js">
-        <metrics statements="13" coveredstatements="13" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
+        <metrics statements="14" coveredstatements="14" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
         <line num="3" count="3" type="stmt"/>
-        <line num="5" count="3" type="stmt"/>
-        <line num="6" count="15" type="cond" truecount="2" falsecount="0"/>
-        <line num="7" count="6" type="stmt"/>
-        <line num="8" count="9" type="cond" truecount="2" falsecount="0"/>
-        <line num="9" count="3" type="stmt"/>
-        <line num="10" count="6" type="cond" truecount="2" falsecount="0"/>
-        <line num="11" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="15" type="cond" truecount="2" falsecount="0"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="9" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="6" type="cond" truecount="2" falsecount="0"/>
         <line num="12" count="3" type="stmt"/>
-        <line num="14" count="3" type="stmt"/>
-        <line num="18" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
       </file>
       <file name="index.js" path="/Users/Elena/Documents/QA/qa-auto-engineer-javascript-project-87/src/index.js">
         <metrics statements="9" coveredstatements="9" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
@@ -34,7 +35,7 @@
       </file>
     </package>
     <package name="src.formatters">
-      <metrics statements="45" coveredstatements="40" conditionals="30" coveredconditionals="23" methods="9" coveredmethods="9"/>
+      <metrics statements="38" coveredstatements="35" conditionals="30" coveredconditionals="24" methods="8" coveredmethods="8"/>
       <file name="formatsFactory.js" path="/Users/Elena/Documents/QA/qa-auto-engineer-javascript-project-87/src/formatters/formatsFactory.js">
         <metrics statements="5" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="5" count="1" type="stmt"/>
@@ -72,25 +73,18 @@
         <line num="32" count="1" type="stmt"/>
       </file>
       <file name="stylish.js" path="/Users/Elena/Documents/QA/qa-auto-engineer-javascript-project-87/src/formatters/stylish.js">
-        <metrics statements="18" coveredstatements="15" conditionals="8" coveredconditionals="5" methods="3" coveredmethods="3"/>
+        <metrics statements="11" coveredstatements="10" conditionals="8" coveredconditionals="6" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
+        <line num="3" count="6" type="cond" truecount="2" falsecount="0"/>
         <line num="4" count="6" type="stmt"/>
-        <line num="5" count="6" type="stmt"/>
-        <line num="7" count="6" type="stmt"/>
-        <line num="8" count="6" type="cond" truecount="2" falsecount="0"/>
-        <line num="9" count="2" type="stmt"/>
-        <line num="10" count="4" type="cond" truecount="1" falsecount="1"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="4" type="cond" truecount="1" falsecount="1"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="14" count="4" type="cond" truecount="1" falsecount="1"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="18" count="6" type="stmt"/>
-        <line num="21" count="10" type="stmt"/>
-        <line num="22" count="10" type="stmt"/>
-        <line num="23" count="10" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="7" count="6" type="cond" truecount="2" falsecount="2"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="13" count="6" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.parsers">
