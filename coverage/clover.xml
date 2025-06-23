@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1750701645390" clover="3.2.0">
-  <project timestamp="1750701645390" name="All files">
-    <metrics statements="65" coveredstatements="61" conditionals="33" coveredconditionals="27" methods="15" coveredmethods="14" elements="113" coveredelements="102" complexity="0" loc="65" ncloc="65" packages="3" files="9" classes="9"/>
+<coverage generated="1750702421083" clover="3.2.0">
+  <project timestamp="1750702421083" name="All files">
+    <metrics statements="69" coveredstatements="65" conditionals="35" coveredconditionals="29" methods="17" coveredmethods="16" elements="121" coveredelements="110" complexity="0" loc="69" ncloc="69" packages="3" files="9" classes="9"/>
     <package name="src">
       <metrics statements="20" coveredstatements="20" conditionals="7" coveredconditionals="7" methods="3" coveredmethods="3"/>
       <file name="diffBuilder.js" path="/Users/Elena/Documents/QA/qa-auto-engineer-javascript-project-87/src/diffBuilder.js">
@@ -32,7 +32,7 @@
       </file>
     </package>
     <package name="src.formatters">
-      <metrics statements="33" coveredstatements="31" conditionals="22" coveredconditionals="18" methods="8" coveredmethods="8"/>
+      <metrics statements="37" coveredstatements="35" conditionals="24" coveredconditionals="20" methods="10" coveredmethods="10"/>
       <file name="formatsFactory.js" path="/Users/Elena/Documents/QA/qa-auto-engineer-javascript-project-87/src/formatters/formatsFactory.js">
         <metrics statements="5" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="5" count="1" type="stmt"/>
@@ -70,13 +70,17 @@
         <line num="32" count="1" type="stmt"/>
       </file>
       <file name="stylish.js" path="/Users/Elena/Documents/QA/qa-auto-engineer-javascript-project-87/src/formatters/stylish.js">
-        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="6" type="stmt"/>
         <line num="4" count="6" type="stmt"/>
-        <line num="5" count="6" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
+        <line num="7" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="12" count="12" type="stmt"/>
+        <line num="13" count="12" type="stmt"/>
+        <line num="14" count="12" type="stmt"/>
+        <line num="17" count="6" type="stmt"/>
       </file>
     </package>
     <package name="src.parsers">
