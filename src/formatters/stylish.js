@@ -1,19 +1,22 @@
-const formatStylish = (diff) => {
-  const lines = Object.entries(diff).map(([key, value]) => {
-    const prefix = key.startsWith('  ') ? '  ' : `${key.slice(0, 1)} `;
-    const cleanKey = key.slice(2);
-
-    let formattedValue = value;
-    if (typeof value === 'object' && value !== null) {
-      formattedValue = '[complex value]';
-    } else if (typeof value === 'string') {
-      formattedValue = value;
+const formatStylish = diff => {
+  const lines = diff.map(item => {
+    const { key, type, value, oldValue, newValue } = item
+    
+    switch (type) {
+    case 'added':
+      return `  + ${key}: ${value}`
+    case 'removed':
+      return `  - ${key}: ${value}`
+    case 'changed':
+      return `  - ${key}: ${oldValue}\n  + ${key}: ${newValue}`
+    case 'unchanged':
+      return `    ${key}: ${value}`
+    default:
+      throw new Error(`Unknown type: ${type}`)
     }
+  })
+  
+  return `{\n${lines.join('\n')}\n}`
+}
 
-    return `${prefix}${cleanKey}: ${formattedValue}`;
-  });
-
-  return `{\n  ${lines.join('\n  ')}\n}`;
-};
-
-export default formatStylish;
+export default formatStylish

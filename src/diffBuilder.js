@@ -1,22 +1,26 @@
 const buildDiff = (obj1, obj2) => {
-  const keys = Object.keys({ ...obj1, ...obj2 });
-  const sortedKeys = keys.sort();
-  const result = {};
+  const keys = Object.keys({ ...obj1, ...obj2 })
+  const sortedKeys = keys.sort()
+  const diff = []
 
-  sortedKeys.forEach((key) => {
+  sortedKeys.forEach(key => {
     if (!(key in obj2)) {
-      result[`- ${key}`] = obj1[key];
+      diff.push({ key, type: 'removed', value: obj1[key] })
     } else if (!(key in obj1)) {
-      result[`+ ${key}`] = obj2[key];
+      diff.push({ key, type: 'added', value: obj2[key] })
     } else if (obj1[key] !== obj2[key]) {
-      result[`- ${key}`] = obj1[key];
-      result[`+ ${key}`] = obj2[key];
+      diff.push({ 
+        key, 
+        type: 'changed', 
+        oldValue: obj1[key], 
+        newValue: obj2[key], 
+      })
     } else {
-      result[`  ${key}`] = obj1[key];
+      diff.push({ key, type: 'unchanged', value: obj1[key] })
     }
-  });
+  })
 
-  return result;
-};
+  return diff
+}
 
-export default buildDiff;
+export default buildDiff

@@ -1,35 +1,30 @@
-const formatValue = (value) => {
-  if (typeof value === 'object' && value !== null) {
-    return '[complex value]';
+const formatValue = value => {
+  if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
+    return '[complex value]'
   }
-  return typeof value === 'string' ? `'${value}'` : String(value);
-};
-
-const formatPlain = (diff) => {
-  const lines = [];
-  const processedKeys = new Set();
-
-  Object.entries(diff).forEach(([key]) => {
-    const cleanKey = key.slice(2);
-    if (key.startsWith('- ') && !(`+ ${cleanKey}` in diff)) {
-      lines.push(`Property '${cleanKey}' was removed`);
-      processedKeys.add(cleanKey);
+  return typeof value === 'string' ? `'${value}'` : value
+}
+  
+const formatPlain = diff => {
+  const lines = diff.map(item => {
+    const { key, type } = item
+  
+    switch (type) {
+    case 'added':
+      return `Property '${key}' was added with value: ${formatValue(item.value)}`
+    case 'removed':
+      return `Property '${key}' was removed`
+    case 'changed':
+      return `Property '${key}' was updated. From ${formatValue(item.oldValue)} to ${formatValue(item.newValue)}`
+    case 'unchanged':
+      return null
+    default:
+      throw new Error(`Unknown type: ${type}`)
     }
-  });
-
-  Object.entries(diff).forEach(([key, value]) => {
-    const cleanKey = key.slice(2);
-
-    if (processedKeys.has(cleanKey)) return;
-
-    if (key.startsWith('+ ') && !(`- ${cleanKey}` in diff)) {
-      lines.push(`Property '${cleanKey}' was added with value: ${formatValue(value)}`);
-    } else if (key.startsWith('- ') && (`+ ${cleanKey}` in diff)) {
-      lines.push(`Property '${cleanKey}' was updated. From ${formatValue(value)} to ${formatValue(diff[`+ ${cleanKey}`])}`);
-    }
-  });
-
-  return lines.join('\n');
-};
-
-export default formatPlain;
+  })
+  
+  return lines.filter(Boolean).join('\n')
+}
+  
+export default formatPlain
+  
