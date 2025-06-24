@@ -1,17 +1,16 @@
-import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import genDiff from '../src/index.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+const currentDir = path.dirname(fileURLToPath(import.meta.url));
+const getFixturePath = (filename) => path.join(currentDir, '..', '__fixtures__', filename);
 
 describe('genDiff', () => {
   const file1Json = getFixturePath('file1.json');
   const file2Json = getFixturePath('file2.json');
   const file1Yaml = getFixturePath('file1.yaml');
   const file2Yaml = getFixturePath('file2.yaml');
-  
+
   const stylishExpected = `{
   - follow: false
     host: hexlet.io
@@ -39,7 +38,7 @@ Property 'verbose' was added with value: true`;
   test('json format', () => {
     const result = genDiff(file1Json, file2Json, 'json');
     expect(() => JSON.parse(result)).not.toThrow();
-    
+
     const parsed = JSON.parse(result);
     expect(parsed).toHaveProperty('- follow', false);
     expect(parsed).toHaveProperty('  host', 'hexlet.io');
