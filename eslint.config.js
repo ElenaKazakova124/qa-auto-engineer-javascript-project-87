@@ -32,6 +32,7 @@ export default [
       '@stylistic/no-multiple-empty-lines': ['error', { max: 1 }],
       '@stylistic/eol-last': ['error', 'always'],
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
+      '@stylistic/brace-style': ['error', '1tbs'],
 
       'no-underscore-dangle': 'off',
       'no-unused-vars': 'error',
