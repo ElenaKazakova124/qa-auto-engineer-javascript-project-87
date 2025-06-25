@@ -7,23 +7,23 @@ export default [
     ignores: [
       '**/dist/**',
       '**/coverage/**',
-      '**/__fixtures__/**'
-    ]
+      '**/__fixtures__/**',
+    ],
   },
   js.configs.recommended,
   {
     plugins: {
-      '@stylistic': stylisticPlugin
+      '@stylistic': stylisticPlugin,
     },
     languageOptions: {
       globals: {
         ...globals.node,
-        ...globals.jest
+        ...globals.jest,
       },
       parserOptions: {
         ecmaVersion: 2022,
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     },
     rules: {
       '@stylistic/arrow-parens': ['error', 'as-needed'],
@@ -31,10 +31,11 @@ export default [
       '@stylistic/no-trailing-spaces': 'error',
       '@stylistic/no-multiple-empty-lines': ['error', { max: 1 }],
       '@stylistic/eol-last': ['error', 'always'],
-      '@stylistic/comma-dangle': ['error', 'only-multiline'],
+      '@stylistic/comma-dangle': ['error', 'always-multiline'],
+
       'no-underscore-dangle': 'off',
       'no-unused-vars': 'error',
-      'import/no-extraneous-dependencies': 'off'
-    }
-  }
+      'import/no-extraneous-dependencies': 'off',
+    },
+  },
 ]
