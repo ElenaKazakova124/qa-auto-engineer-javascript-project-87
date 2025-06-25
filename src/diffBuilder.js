@@ -1,12 +1,11 @@
 const buildDiff = (obj1, obj2) => {
-  const keys = Object.keys({ ...obj1, ...obj2 });
+  const keys = Object.keys({ ...obj1, ...obj2 })
 
-  const sortedKeys = keys.sort((a, b) => a.localeCompare(b));
+  const sortedKeys = keys.sort((a, b) => a.localeCompare(b))
 
-  const diff = [];
+  const diff = []
 
   sortedKeys.forEach(key => {
-
     if (!(key in obj2)) {
       diff.push({ key, type: 'removed', value: obj1[key] })
     } else if (!(key in obj1)) {
