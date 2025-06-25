@@ -1,5 +1,4 @@
 import yaml from 'js-yaml'
 
-const parse = content => yaml.load(content)
-
-export default parse
+const parseYaml = data => yaml.load(data)
+export default parseYaml

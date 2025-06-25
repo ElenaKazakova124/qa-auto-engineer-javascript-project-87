@@ -2,16 +2,16 @@ import stylish from './stylish.js'
 import plain from './plain.js'
 import json from './json.js'
 
-const formatters = {
+const formats = {
   stylish,
   plain,
   json,
 }
 
 export default formatName => {
-  const formatter = formatters[formatName]
+  const formatter = formats[formatName]
   if (!formatter) {
-    throw new Error(`Unknown format: ${formatName}. Use: ${Object.keys(formatters).join(', ')}`)
+    throw new Error(`Unknown format: ${formatName}`)
   }
   return formatter
 }

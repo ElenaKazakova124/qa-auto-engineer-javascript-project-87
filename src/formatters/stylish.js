@@ -1,7 +1,17 @@
+const formatValue = value => {
+  if (value !== null && typeof value === 'object') {
+    return '[complex value]'
+  }
+  return value
+}
+
 const formatStylish = diff => {
   const lines = diff.map(item => {
-    const { key, type, value, oldValue, newValue } = item
-    
+    const { key, type } = item
+    const value = formatValue(item.value)
+    const oldValue = formatValue(item.oldValue)
+    const newValue = formatValue(item.newValue)
+
     switch (type) {
     case 'added':
       return `  + ${key}: ${value}`
@@ -15,7 +25,7 @@ const formatStylish = diff => {
       throw new Error(`Unknown type: ${type}`)
     }
   })
-  
+
   return `{\n${lines.join('\n')}\n}`
 }
 

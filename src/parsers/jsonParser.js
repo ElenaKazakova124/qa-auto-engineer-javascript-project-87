@@ -1,3 +1,2 @@
-const parse = content => JSON.parse(content)
-
-export default parse
+const parseJson = data => JSON.parse(data)
+export default parseJson

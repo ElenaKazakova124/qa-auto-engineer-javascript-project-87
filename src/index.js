@@ -4,18 +4,33 @@ import getParser from './parsers/parserFactory.js'
 import buildDiff from './diffBuilder.js'
 import getFormatter from './formatters/formatsFactory.js'
 
-export default (filepath1, filepath2, formatName = 'stylish') => {
-  const absPath1 = path.resolve(filepath1)
-  const absPath2 = path.resolve(filepath2)
+const getFileFormat = filepath => {
+  const ext = path.extname(filepath).toLowerCase()
+  return ext.slice(1)
+}
 
-  const parse1 = getParser(absPath1)
-  const parse2 = getParser(absPath2)
+const readFile = filepath => {
+  const absolutePath = path.resolve(process.cwd(), filepath)
+  return readFileSync(absolutePath, 'utf8')
+}
 
-  const data1 = parse1(readFileSync(absPath1, 'utf-8'))
-  const data2 = parse2(readFileSync(absPath2, 'utf-8'))
-
-  const diff = buildDiff(data1, data2)
+const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
+  const data1 = readFile(filepath1)
+  const data2 = readFile(filepath2)
+  
+  const format1 = getFileFormat(filepath1)
+  const format2 = getFileFormat(filepath2)
+  
+  const parse1 = getParser(format1)
+  const obj1 = parse1(data1)
+  
+  const parse2 = getParser(format2)
+  const obj2 = parse2(data2)
+  
+  const diff = buildDiff(obj1, obj2)
+  
   const format = getFormatter(formatName)
-
   return format(diff)
 }
+
+export default genDiff

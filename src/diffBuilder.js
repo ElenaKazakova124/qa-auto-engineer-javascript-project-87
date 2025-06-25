@@ -9,11 +9,11 @@ const buildDiff = (obj1, obj2) => {
     } else if (!(key in obj1)) {
       diff.push({ key, type: 'added', value: obj2[key] })
     } else if (obj1[key] !== obj2[key]) {
-      diff.push({ 
-        key, 
-        type: 'changed', 
-        oldValue: obj1[key], 
-        newValue: obj2[key], 
+      diff.push({
+        key,
+        type: 'changed',
+        oldValue: obj1[key],
+        newValue: obj2[key],
       })
     } else {
       diff.push({ key, type: 'unchanged', value: obj1[key] })

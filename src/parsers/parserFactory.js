@@ -1,18 +1,16 @@
-import parseJson from './jsonParser.js'
-import parseYaml from './yamlParser.js'
+import jsonParser from './jsonParser.js'
+import yamlParser from './yamlParser.js'
 
-const getParser = filepath => {
-  const ext = filepath.slice(filepath.lastIndexOf('.')).toLowerCase()
-
-  if (ext === '.json') {
-    return parseJson
+const getParser = ext => {
+  switch (ext) {
+  case 'json':
+    return jsonParser
+  case 'yaml':
+  case 'yml':
+    return yamlParser
+  default:
+    throw new Error(`Unsupported file format: ${ext}`)
   }
-
-  if (ext === '.yaml' || ext === '.yml') {
-    return parseYaml
-  }
-
-  throw new Error(`Unsupported file format: ${ext}`)
 }
 
 export default getParser

@@ -1,8 +1,10 @@
-import { fileURLToPath } from 'url'
 import path from 'path'
+import { fileURLToPath } from 'url'
 import genDiff from '../src/index.js'
 
-const currentDir = path.dirname(fileURLToPath(import.meta.url))
+const currentFilename = fileURLToPath(import.meta.url)
+const currentDir = path.dirname(currentFilename)
+
 const getFixturePath = filename => path.join(currentDir, '..', '__fixtures__', filename)
 
 describe('genDiff', () => {
@@ -10,6 +12,7 @@ describe('genDiff', () => {
   const file2Json = getFixturePath('file2.json')
   const file1Yaml = getFixturePath('file1.yaml')
   const file2Yaml = getFixturePath('file2.yaml')
+
 
   const stylishExpected = `{
   - follow: false
@@ -71,4 +74,3 @@ Property 'verbose' was added with value: true`
     ]))
   })
 })
-
