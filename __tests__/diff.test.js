@@ -13,7 +13,6 @@ describe('genDiff', () => {
   const file1Yaml = getFixturePath('file1.yaml')
   const file2Yaml = getFixturePath('file2.yaml')
 
-
   const stylishExpected = `{
   - follow: false
     host: hexlet.io
@@ -41,9 +40,9 @@ Property 'verbose' was added with value: true`
   test('json format', () => {
     const result = genDiff(file1Json, file2Json, 'json')
     expect(() => JSON.parse(result)).not.toThrow()
-    
+
     const parsed = JSON.parse(result)
-    
+
     expect(parsed).toEqual(expect.arrayContaining([
       expect.objectContaining({
         key: 'follow',
