@@ -4,12 +4,12 @@ import getParser from './parsers/parserFactory.js'
 import buildDiff from './diffBuilder.js'
 import getFormatter from './formatters/formatsFactory.js'
 
-const getFileFormat = filepath => {
+const getFileFormat = (filepath) => {
   const ext = path.extname(filepath).toLowerCase()
   return ext.slice(1)
 }
 
-const readFile = filepath => {
+const readFile = (filepath) => {
   const absolutePath = path.resolve(process.cwd(), filepath)
   return readFileSync(absolutePath, 'utf8')
 }

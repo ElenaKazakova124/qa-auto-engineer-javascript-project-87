@@ -1,7 +1,7 @@
 import jsonParser from './jsonParser.js'
 import yamlParser from './yamlParser.js'
 
-const getParser = ext => {
+const getParser = (ext) => {
   switch (ext) {
     case 'json':
       return jsonParser

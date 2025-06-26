@@ -1,12 +1,12 @@
-const formatValue = value => {
+const formatValue = (value) => {
   if (value !== null && typeof value === 'object') {
     return '[complex value]'
   }
   return value
 }
 
-const formatStylish = diff => {
-  const lines = diff.map(item => {
+const formatStylish = (diff) => {
+  const lines = diff.map((item) => {
     const { key, type } = item
     const value = formatValue(item.value)
     const oldValue = formatValue(item.oldValue)

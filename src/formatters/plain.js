@@ -1,12 +1,12 @@
-const formatValue = value => {
+const formatValue = (value) => {
   if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
     return '[complex value]'
   }
   return typeof value === 'string' ? `'${value}'` : value
 }
 
-const formatPlain = diff => {
-  const lines = diff.map(item => {
+const formatPlain = (diff) => {
+  const lines = diff.map((item) => {
     const { key, type } = item
 
     switch (type) {

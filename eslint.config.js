@@ -1,42 +1,16 @@
 import js from '@eslint/js'
-import stylisticPlugin from '@stylistic/eslint-plugin'
 import globals from 'globals'
+import { defineConfig } from 'eslint/config'
+import stylistic from '@stylistic/eslint-plugin'
+import pluginJest from 'eslint-plugin-jest'
 
-export default [
+export default defineConfig([
+  stylistic.configs.recommended,
+  { files: ['**/*.{js,mjs,cjs}'], plugins: { js }, extends: ['js/recommended'] },
+  { files: ['**/*.{js,mjs,cjs}'], languageOptions: { globals: globals.node } },
   {
-    ignores: [
-      '**/dist/**',
-      '**/coverage/**',
-      '**/__fixtures__/**',
-    ],
-  },
-  js.configs.recommended,
-  {
-    plugins: {
-      '@stylistic': stylisticPlugin,
-    },
     languageOptions: {
-      globals: {
-        ...globals.node,
-        ...globals.jest,
-      },
-      parserOptions: {
-        ecmaVersion: 2022,
-        sourceType: 'module',
-      },
-    },
-    rules: {
-      '@stylistic/arrow-parens': ['error', 'as-needed'],
-      '@stylistic/indent': ['error', 2],
-      '@stylistic/no-trailing-spaces': 'error',
-      '@stylistic/no-multiple-empty-lines': ['error', { max: 1 }],
-      '@stylistic/eol-last': ['error', 'always'],
-      '@stylistic/comma-dangle': ['error', 'always-multiline'],
-      '@stylistic/brace-style': ['error', '1tbs'],
-
-      'no-underscore-dangle': 'off',
-      'no-unused-vars': 'error',
-      'import/no-extraneous-dependencies': 'off',
+      globals: pluginJest.environments.globals.globals,
     },
   },
-]
+])
