@@ -50,3 +50,6 @@ console.log(diff1);
 // Plain format
 const diff2 = genDiff('file1.yaml', 'file2.yaml', 'plain');
 console.log(diff2);
+
+// Video
+Asciinema - https://asciinema.org/a/p19crvzUkUxYVx9cfoWWmBnhL
