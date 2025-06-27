@@ -15,7 +15,7 @@ Example output:
 ## Supported Formats
 
 ### Stylish (default)
-```bash
+```bash`
 gendiff file1.json file2.json
 # или
 gendiff file1.yaml file2.yaml --format stylish
@@ -27,7 +27,7 @@ gendiff file1.json file2.json --format json
 
 
 ## Examples
-```bash
+```bash`
 # Compare JSON files
 gendiff file1.json file2.json
 
@@ -40,7 +40,7 @@ gendiff file1.json file2.yaml
 
 ## Usage
 
-```javascript
+```javascript`
 import genDiff from '@hexlet/code';
 
 // Default stylish format
