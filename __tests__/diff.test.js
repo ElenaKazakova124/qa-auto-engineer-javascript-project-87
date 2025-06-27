@@ -1,11 +1,13 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
 import genDiff from '../src/index.js'
+import fs from 'fs'
 
-const currentFilename = fileURLToPath(import.meta.url)
-const currentDir = path.dirname(currentFilename)
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
-const getFixturePath = filename => path.join(currentDir, '..', '__fixtures__', filename)
+const getFixturePath = filename => path.join(__dirname, '..', '__fixtures__', filename)
+const readFixture = filename => fs.readFileSync(getFixturePath(filename), 'utf-8').trim()
 
 describe('genDiff', () => {
   const file1Json = getFixturePath('file1.json')
@@ -13,63 +15,31 @@ describe('genDiff', () => {
   const file1Yaml = getFixturePath('file1.yaml')
   const file2Yaml = getFixturePath('file2.yaml')
 
-  const stylishExpected = `{
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
-}`
+  const stylishExpected = readFixture('stylish_result.txt').trim()
+  const plainExpected = readFixture('plain_result.txt')
+  const jsonExpected = readFixture('json_result.json')
 
-  const plainExpected = `Property 'follow' was removed
-Property 'proxy' was removed
-Property 'timeout' was updated. From 50 to 20
-Property 'verbose' was added with value: true`
-
-  test('stylish format (default)', () => {
-    const result = genDiff(file1Json, file2Json)
-    expect(result).toBe(stylishExpected)
+  test.each([
+    [file1Json, file2Json, stylishExpected],
+    [file1Yaml, file2Yaml, stylishExpected],
+  ])('stylish format: %#', (filepath1, filepath2, expected) => {
+    const result = genDiff(filepath1, filepath2).trim()
+    expect(result).toBe(expected)
   })
 
-  test('plain format', () => {
-    const result = genDiff(file1Yaml, file2Yaml, 'plain')
-    expect(result).toBe(plainExpected)
+  test.each([
+    [file1Json, file2Json, plainExpected],
+    [file1Yaml, file2Yaml, plainExpected],
+  ])('plain format: %#', (filepath1, filepath2, expected) => {
+    const result = genDiff(filepath1, filepath2, 'plain')
+    expect(result).toBe(expected)
   })
 
-  test('json format', () => {
-    const result = genDiff(file1Json, file2Json, 'json')
-    expect(() => JSON.parse(result)).not.toThrow()
-
-    const parsed = JSON.parse(result)
-
-    expect(parsed).toEqual(expect.arrayContaining([
-      expect.objectContaining({
-        key: 'follow',
-        type: 'removed',
-        value: false,
-      }),
-      expect.objectContaining({
-        key: 'host',
-        type: 'unchanged',
-        value: 'hexlet.io',
-      }),
-      expect.objectContaining({
-        key: 'proxy',
-        type: 'removed',
-        value: '123.234.53.22',
-      }),
-      expect.objectContaining({
-        key: 'timeout',
-        type: 'changed',
-        oldValue: 50,
-        newValue: 20,
-      }),
-      expect.objectContaining({
-        key: 'verbose',
-        type: 'added',
-        value: true,
-      }),
-    ]))
+  test.each([
+    [file1Json, file2Json, jsonExpected],
+    [file1Yaml, file2Yaml, jsonExpected],
+  ])('json format: %#', (filepath1, filepath2, expected) => {
+    const result = genDiff(filepath1, filepath2, 'json')
+    expect(JSON.parse(result)).toEqual(JSON.parse(expected))
   })
 })
